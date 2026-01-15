@@ -2,16 +2,18 @@ import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowLeftIcon, ShoppingBagIcon, HeartIcon } from '@heroicons/react/24/outline';
-import { getProductBySlug, getAllProducts } from '@/lib/sanity/queries';
+import { getProductBySlug, getProducts } from '@/lib/sanity/queries';
 import { urlForImage } from '@/lib/sanity/client';
 import AddToCartButton from '@/components/catalog/AddToCartButton';
 
 export const revalidate = 60;
 
 export async function generateStaticParams() {
-  const products = await getAllProducts();
+  const products = await getProducts();
   return products.map((product) => ({
     slug: product.slug.current,
+  }));
+}ent,
   }));
 }
 

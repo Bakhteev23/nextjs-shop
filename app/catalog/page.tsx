@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { Product, Category } from '@/types';
-import { getAllProducts, getAllCategories } from '@/lib/sanity/queries';
+import { getProducts, getCategories } from '@/lib/sanity/queries';
 import ProductGrid from '@/components/catalog/ProductGrid';
 import CategoryFilter from '@/components/catalog/CategoryFilter';
 import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
@@ -19,11 +19,11 @@ export default function CatalogPage() {
       setLoading(true);
       try {
         const [productsData, categoriesData] = await Promise.all([
-          getAllProducts(),
-          getAllCategories(),
+          getProducts(),
+          getCategories(),
         ]);
         setProducts(productsData);
-        setCategories(categoriesData);
+        setCategories(categoriesData);tegories(categoriesData);
       } catch (error) {
         console.error('Error fetching data:', error);
       } finally {
