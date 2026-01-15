@@ -13,11 +13,9 @@ export async function generateStaticParams() {
   return products.map((product) => ({
     slug: product.slug.current,
   }));
-}ent,
-  }));
 }
 
-interface ProductPageProps {
+interface ProductPageProps {geProps {
   params: {
     slug: string;
   };
@@ -46,25 +44,23 @@ export default async function ProductPage({ params }: ProductPageProps) {
           {/* Product Images */}
           <div className="space-y-4">
             <div className="relative aspect-square rounded-2xl overflow-hidden bg-gray-100">
-              {product.image ? (
-                <Image
-                  src={urlForImage(product.image).url()}
-                  alt={product.name}
-                  fill
-                  className="object-cover"
-                  priority
-                />
-              ) : (
-                <div className="w-full h-full flex items-center justify-center">
-                  <ShoppingBagIcon className="h-24 w-24 text-gray-300" />
-                </div>
-              )}
-            </div>
-
-            {/* Gallery - если есть дополнительные изображения */}
-            {product.gallery && product.gallery.length > 0 && (
+              {product.gallery && product.gallery.length > 0 && (
               <div className="grid grid-cols-4 gap-4">
                 {product.gallery.map((image, index) => (
+                  <div
+                    key={index}
+                    className="relative aspect-square rounded-lg overflow-hidden bg-gray-100 cursor-pointer hover:opacity-75 transition-opacity"
+                  >
+                    <Image
+                      src={urlForImage(image).url()}
+                      alt={`${product.title} - изображение ${index + 1}`}
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                ))}
+              </div>
+            )}product.gallery.map((image, index) => (
                   <div
                     key={index}
                     className="relative aspect-square rounded-lg overflow-hidden bg-gray-100 cursor-pointer hover:opacity-75 transition-opacity"
@@ -95,7 +91,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
 
             {/* Product Name */}
             <h1 className="text-4xl font-bold text-gray-900 mb-4">
-              {product.name}
+              {product.title}
             </h1>
 
             {/* Price */}
@@ -103,12 +99,12 @@ export default async function ProductPage({ params }: ProductPageProps) {
               <p className="text-4xl font-bold text-primary">
                 {product.price.toLocaleString('ru-RU')} ₽
               </p>
-              {product.compareAtPrice && product.compareAtPrice > product.price && (
+              {product.oldPrice && product.oldPrice > product.price && (
                 <p className="text-xl text-gray-400 line-through">
-                  {product.compareAtPrice.toLocaleString('ru-RU')} ₽
+                  {product.oldPrice.toLocaleString('ru-RU')} ₽
                 </p>
               )}
-            </div>
+            </div>         </div>
 
             {/* Stock Status */}
             <div className="flex items-center gap-2 mb-8">

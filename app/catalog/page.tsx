@@ -23,10 +23,10 @@ export default function CatalogPage() {
           getCategories(),
         ]);
         setProducts(productsData);
-        setCategories(categoriesData);tegories(categoriesData);
+        setCategories(categoriesData);
       } catch (error) {
         console.error('Error fetching data:', error);
-      } finally {
+      } finally {finally {
         setLoading(false);
       }
     }
@@ -37,9 +37,10 @@ export default function CatalogPage() {
   const filteredProducts = products.filter((product) => {
     const matchesCategory = !activeCategory || product.category?.slug.current === activeCategory;
     const matchesSearch = !searchQuery || 
-      product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      product.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
       product.description?.toLowerCase().includes(searchQuery.toLowerCase());
     return matchesCategory && matchesSearch;
+  });
   });
 
   return (
