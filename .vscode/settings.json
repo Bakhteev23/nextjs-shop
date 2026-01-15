@@ -1,0 +1,6 @@
+{
+    "chat.editRequests": "inline",
+    "chat.edits2.enabled": true,
+    "inlineChat.enableV2": true,
+    "chat.checkpoints.enabled": true
+}
